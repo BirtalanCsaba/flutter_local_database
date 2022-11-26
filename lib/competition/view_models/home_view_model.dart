@@ -37,7 +37,8 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> add(Competition competition) async {
     try {
-      await DatabaseHelper.add(competition);
+      int id = await DatabaseHelper.add(competition);
+      competition.id = id;
     } on DatabaseException catch(ex) {
       developer.log(ex.toString(), name: runtimeType.toString());
       throw Exception("Cannot add data");

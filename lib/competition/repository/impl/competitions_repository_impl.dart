@@ -32,13 +32,8 @@ class CompetitionsRepositoryImpl extends CompetitionsRepository {
     // competitions.add(comp2);
   }
 
-  int getNextId() {
-    return nextId++;
-  }
-
   @override
   Future<Competition> add(Competition item) async {
-    item.id = getNextId();
     competitions.add(item);
     return item;
   }
