@@ -16,10 +16,25 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _homeViewModel.fetchData();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      try {
+        await _homeViewModel.fetchData();
+      } on Exception catch(_) {
+        showSnackBar(context, "Something went wrong");
+      }
     });
     super.initState();
+  }
+
+  showSnackBar(BuildContext context, String text)
+  {
+    final snackBar = SnackBar(
+      backgroundColor: Colors.red,
+      content: Text(text),
+      duration: const Duration(seconds: 5),//default is 4s
+    );
+    // Find the Scaffold in the widget tree and use it to show a SnackBar.
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   showAlertDialog(BuildContext context, VoidCallback onRemove) {

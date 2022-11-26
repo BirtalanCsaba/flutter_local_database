@@ -138,14 +138,14 @@ class _CompetitionAddScreenState extends State<CompetitionAddScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         var newComp = Competition.all(
-                            judgeId,
-                            _titleInputController.text,
-                            _categoryInputController.text,
-                            maxPoints,
-                            _firstPlacePrizeInputController.text,
-                            _descriptionInputController.text,
-                            submissionDeadline,
-                            isFinished
+                            judgeId: judgeId,
+                            title: _titleInputController.text,
+                            category: _categoryInputController.text,
+                            maxPoints: maxPoints,
+                            firstPlacePrize: _firstPlacePrizeInputController.text,
+                            description: _descriptionInputController.text,
+                            submissionDeadline: submissionDeadline,
+                            isFinished: isFinished
                         );
                         _homeViewModel.add(newComp);
                         Navigator.of(context).pop();

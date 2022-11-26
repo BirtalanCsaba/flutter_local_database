@@ -6,4 +6,5 @@ abstract class BaseRepository <T, ID> {
   Future<T> add(T item);
   Future<void> update(T item);
   Future<void> delete(ID id);
+  Future<void> populate(List<T> items);
 }

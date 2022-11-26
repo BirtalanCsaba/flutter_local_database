@@ -6,30 +6,30 @@ class CompetitionsRepositoryImpl extends CompetitionsRepository {
   int nextId = 0;
 
   CompetitionsRepositoryImpl() {
-    var comp1 = Competition.all(
-        1,
-        "Landscape photography",
-        "landscape",
-        60,
-        "new camera",
-        "Landscape photography in detail",
-        DateTime.now().add(const Duration(days: 10)),
-        false
-    );
-    var comp2 = Competition.all(
-        1,
-        "Women portrait",
-        "portrait",
-        30,
-        "new camera",
-        "Portrait photography in detail",
-        DateTime.now().add(const Duration(days: 10)),
-        false
-    );
-    comp1.id = getNextId();
-    comp2.id = getNextId();
-    competitions.add(comp1);
-    competitions.add(comp2);
+    // var comp1 = Competition.all(
+    //     judgeId: 1,
+    //     title: "Landscape photography",
+    //     category: "landscape",
+    //     maxPoints: 60,
+    //     firstPlacePrize: "new camera",
+    //     description: "Landscape photography in detail",
+    //     submissionDeadline: DateTime.now().add(const Duration(days: 10)),
+    //     isFinished: false
+    // );
+    // var comp2 = Competition.all(
+    //     judgeId: 1,
+    //     title: "Women portrait",
+    //     category: "portrait",
+    //     maxPoints: 30,
+    //     firstPlacePrize: "new camera",
+    //     description: "Portrait photography in detail",
+    //     submissionDeadline: DateTime.now().add(const Duration(days: 10)),
+    //     isFinished: false
+    // );
+    // comp1.id = getNextId();
+    // comp2.id = getNextId();
+    // competitions.add(comp1);
+    // competitions.add(comp2);
   }
 
   int getNextId() {
@@ -69,17 +69,22 @@ class CompetitionsRepositoryImpl extends CompetitionsRepository {
     }
     Competition foundCompetition = competitions.firstWhere((element) => element.id == id);
     var theComp = Competition.all(
-      foundCompetition.judgeId,
-      foundCompetition.title,
-      foundCompetition.category,
-      foundCompetition.maxPoints,
-      foundCompetition.firstPlacePrize,
-      foundCompetition.description,
-      foundCompetition.submissionDeadline,
-      foundCompetition.isFinished,
+      judgeId: foundCompetition.judgeId,
+      title: foundCompetition.title,
+      category: foundCompetition.category,
+      maxPoints: foundCompetition.maxPoints,
+      firstPlacePrize: foundCompetition.firstPlacePrize,
+      description: foundCompetition.description,
+      submissionDeadline: foundCompetition.submissionDeadline,
+      isFinished: foundCompetition.isFinished,
     );
     theComp.id = id;
     return theComp;
+  }
+
+  @override
+  Future<void> populate(List<Competition> items) async {
+    competitions = items;
   }
 
 }

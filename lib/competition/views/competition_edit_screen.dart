@@ -155,14 +155,14 @@ class _CompetitionEditScreenState extends State<CompetitionEditScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         var newComp = Competition.all(
-                            _competition.judgeId,
-                            _titleInputController.text,
-                            _categoryInputController.text,
-                            _competition.maxPoints,
-                            _firstPlacePrizeInputController.text,
-                            _descriptionInputController.text,
-                            _competition.submissionDeadline,
-                            _competition.isFinished
+                            judgeId: _competition.judgeId,
+                            title: _titleInputController.text,
+                            category: _categoryInputController.text,
+                            maxPoints: _competition.maxPoints,
+                            firstPlacePrize: _firstPlacePrizeInputController.text,
+                            description: _descriptionInputController.text,
+                            submissionDeadline: _competition.submissionDeadline,
+                            isFinished: _competition.isFinished
                         );
                         newComp.id = _competition.id;
                         _homeViewModel.update(newComp);
